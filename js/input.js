@@ -15,8 +15,10 @@ export class Input {
     addEventListener('keyup', e => this.keys.delete(e.code));
     addEventListener('mousemove', e => {
       if (!this.locked) return;
-      this.mouseDX += e.movementX;
-      this.mouseDY += e.movementY;
+      // Clamp spikes (browser bugs / cursor warps in free-mouse fallback)
+      const clamp = v => Math.max(-150, Math.min(150, v));
+      this.mouseDX += clamp(e.movementX);
+      this.mouseDY += clamp(e.movementY);
     });
     addEventListener('mousedown', e => {
       if (!this.locked) return;

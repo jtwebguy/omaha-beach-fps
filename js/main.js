@@ -41,6 +41,9 @@ const player = new Player(camera, input, world);
 const weapon = new Weapon(camera, scene, audio, effects);
 const enemies = new EnemyManager(scene, world, audio, effects);
 
+// Handy for debugging in the browser console
+window.__game = { scene, camera, world, player, weapon, enemies, effects };
+
 // ---------- Menu / loading ----------
 const menu = document.getElementById('menu');
 const playBtn = document.getElementById('play');

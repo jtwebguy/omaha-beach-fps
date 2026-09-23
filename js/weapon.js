@@ -42,7 +42,8 @@ export class Weapon {
     this.effects = effects;
     this.model = buildGarandModel();
     camera.add(this.model);
-    this.hipPos = new THREE.Vector3(0.22, -0.2, -0.45);
+    this.model.scale.setScalar(0.85);
+    this.hipPos = new THREE.Vector3(0.2, -0.2, -0.4);
     this.adsPos = new THREE.Vector3(0, -0.085, -0.3);
     this.model.position.copy(this.hipPos);
     this.mag = WEAPON.magSize;

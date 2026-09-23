@@ -34,7 +34,20 @@ export class Input {
     });
   }
 
-  lock() { this.dom.requestPointerLock(); }
+  // Falls back to "free mouse" mode if pointer lock is unavailable (iframes, some browsers).
+  lock() {
+    const fallback = () => { this.locked = true; this.fallback = true; };
+    try {
+      const p = this.dom.requestPointerLock();
+      if (p && p.catch) p.catch(fallback);
+    } catch { fallback(); }
+    if (!this.escBound) {
+      this.escBound = true;
+      addEventListener('keydown', e => {
+        if (e.code === 'Escape' && this.fallback && this.locked) { this.locked = false; this.onUnlock?.(); }
+      });
+    }
+  }
   down(code) { return this.keys.has(code); }
 
   consumeMouse() {

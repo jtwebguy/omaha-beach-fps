@@ -228,7 +228,7 @@ export class World {
     const ramp = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.2, 2.6), hull);
     ramp.position.set(0, -0.35, -6.1); ramp.rotation.x = -0.25;
     [floor, left, right, back, ramp].forEach(m => { m.castShadow = m.receiveShadow = true; m.userData.surface = 'metal'; this.hitMeshes.push(m); g.add(m); });
-    g.position.set(0, -0.3, WORLD.playerStart[2] + 7);
+    g.position.set(0, -0.3, WORLD.playerStart[2] + 11);
     this.scene.add(g);
     this.landingCraft = g;
   }
